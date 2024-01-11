@@ -1,8 +1,16 @@
 "use client";
 import * as React from "react";
-
+import { useSelector, useDispatch } from "react-redux";
+import {
+  onProjectAdd,
+  onToggleAddPeoject,
+} from "../GlobalRedux/Features/counter/counterSlice";
 export default function Addingwords() {
   const [inputs, setInputs] = React.useState({});
+  // const [projectName, setProjectName] = useState("");
+  // const [projectTime, setProjectTime] = useState("");
+  // const [projectForm, setProjectForm] = useState("");
+  const dispatch = useDispatch();
 
   const handleChange = React.useCallback(
     (e) => {
@@ -12,9 +20,18 @@ export default function Addingwords() {
     },
     [inputs]
   );
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputs);
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   console.log(inputs);
+  // };
+  const addProjectItem = () => {
+    console.log(inputs), alert(inputs);
+    dispatch(
+      onProjectAdd({
+        items: inputs,
+      })
+    ),
+      dispatch(onToggleAddPeoject(false));
   };
 
   return (
@@ -69,6 +86,7 @@ export default function Addingwords() {
             />
           }
         </div>
+        <button onClick={addProjectItem}>추가</button>
       </div>
     </div>
   );
