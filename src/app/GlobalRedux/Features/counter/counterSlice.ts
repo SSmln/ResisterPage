@@ -30,8 +30,14 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState ={
-    projectComponents:[],
-    addProject: false
+    AddingwordsInputs: [{
+        Product_name_Add_side_phrase: "",
+        Product_name_Add_back_phrase: "",
+        Add_product_description_top_phrase: "",
+        Add_product_description_below_phrase: "",
+}]
+   
+  
 }
 
 
@@ -39,21 +45,19 @@ export const counterSlice = createSlice ({
     name: 'counter',
     initialState,
     reducers: {
-        onProjectAdd: (state, action) => {
-            let newProject = {
-               inputs: action.payload.inputs,
-                name: action.payload.name,
-                datetime: action.payload.datetime,
-                form: action.payload.form,
-            };
-            state.projectComponents = [...state.projectComponents, newProject];
-        },
-        onToggleAddPeoject: (state, action) => {
-            state.addProject = action.payload.flag;
-        },
-    }
-})
+        onProjectAdd: (state=initialState , action) => {
+                return {
+                    ...state,
+                    AddingwordsInputs:action.payload
+                }
+            
+            }
+            
+            
+        }
 
-export const {onProjectAdd,onToggleAddPeoject} = counterSlice.actions;
+    })
+
+export const {onProjectAdd} = counterSlice.actions;
 
 export default counterSlice.reducer;

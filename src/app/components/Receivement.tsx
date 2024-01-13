@@ -45,7 +45,7 @@ export default function Receivement() {
         <div className=" border-b-[2px] border-r-[2px] ">배송비</div>
         <div className=" border-b-[2px] border-r-[2px] grid grid-col-subgrid col-span-3">
           <div>
-            배송비 판매가에 포함{" "}
+            배송비 판매가에 포함
             <Switch
               name=" 배송비 판매가에 포함"
               className="SwitchToggle_1"

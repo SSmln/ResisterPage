@@ -13,22 +13,24 @@ import Itemsetting from "./components/Itemsetting";
 // } from "./GlobalRedux/Features/counter/counterSlice";
 import Addingwords from "./components/Addingwords";
 
-export default function Totalpage() {
-  const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch = useDispatch();
+let projectlist = [];
 
-  const [inputs, setInputs] = useState({});
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log(inputs);
-  };
+export default function Totalpage() {
+  const data = useSelector((state) => {
+    return state;
+  });
+
+  projectlist.push(JSON.stringify(data));
+  console.log(projectlist);
+
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <Addingwords />
-        {/* <Addingwords /> */}
+      <Addingwords>{}</Addingwords>
+      <div>{JSON.stringify(data)}</div>
 
-        {/*
+      {/* <Addingwords /> */}
+
+      {/*
         <Tempalte />
         <br />
 
@@ -37,7 +39,6 @@ export default function Totalpage() {
         <Receivement />
         <br />
         <Addingwords /> */}
-      </form>
     </div>
   );
 }
