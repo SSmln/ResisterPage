@@ -11,7 +11,6 @@ export default function Addingwords() {
   // const [projectTime, setProjectTime] = useState("");
   // const [projectForm, setProjectForm] = useState("");
   const dispatch = useDispatch();
-
   const handleChange = React.useCallback(
     (e) => {
       const name = e.target.name;
@@ -24,11 +23,36 @@ export default function Addingwords() {
   //   e.preventDefault();
   //   console.log(inputs);
   // };
+  const dataset = [
+    {
+      id: 1,
+      name: "상품명 옆문구 추가",
+      value: inputs.Product_name_Add_side_phrase,
+    },
+    {
+      id: 2,
+      name: "상품명 뒷문구 추가",
+      value: inputs.Product_name_Add_back_phrase,
+    },
+    {
+      id: 3,
+      name: "상품설명 상단문구 추가",
+      value: inputs.Add_product_description_top_phrase,
+    },
+    {
+      id: 4,
+      name: "상품설명 하단 문구 추가",
+      value: inputs.Add_product_description_below_phrase,
+    },
+  ];
   const addProjectItem = () => {
-    console.log(inputs), alert(inputs);
     dispatch(
       onProjectAdd({
-        items: inputs,
+        append: {
+          id: 1,
+          name: "상품명 옆문구 추가",
+          value: inputs.Product_name_Add_side_phrase,
+        },
       })
     ),
       dispatch(onToggleAddPeoject(false));
@@ -36,7 +60,7 @@ export default function Addingwords() {
 
   return (
     <div>
-      <h1>문구추가</h1>{" "}
+      <h1>문구추가</h1>
       <div className="w-[89%] border-y-[2px] border-l-[2px]   grid grid-rows-2 grid-cols-4 grid-flow-row ">
         <div className="border-b-[2px] border-r-[2px]">상품명 옆문구 추가</div>
         <div className=" border-b-[2px] border-r-[2px]">
@@ -73,20 +97,21 @@ export default function Addingwords() {
               onChange={handleChange}
             />
           }
+          <div className="  border-r-[2px]">상품설명 하단 문구 추가</div>
+          <div className="border-r-[2px]">
+            {
+              <input
+                className="w-[80%] h-[200px] bg-gray-100"
+                type="text"
+                name="상품설명 하단 문구 추가"
+                value={inputs.Add_product_description_below_phrase}
+                onChange={handleChange}
+              />
+            }
+          </div>
+          <button onClick={addProjectItem}>추가</button>
         </div>
-        <div className="  border-r-[2px]">상품설명 하단 문구 추가</div>
-        <div className="border-r-[2px]">
-          {
-            <input
-              className="w-[80%] h-[200px] bg-gray-100"
-              type="text"
-              name="상품설명 하단 문구 추가"
-              value={inputs.Add_product_description_below_phrase}
-              onChange={handleChange}
-            />
-          }
-        </div>
-        <button onClick={addProjectItem}>추가</button>
+        <div>{dataset[1].value}</div>
       </div>
     </div>
   );

@@ -24,36 +24,34 @@
 
 // export default counterSlice.reducer;
 
+"use client";
 
-'use client'
+import { createSlice } from "@reduxjs/toolkit";
 
-import { createSlice } from "@reduxjs/toolkit"
+const initialState = {
+  projectComponents: [],
+  addProject: false,
+};
 
-const initialState ={
-    projectComponents:[],
-    addProject: false
-}
+export const counterSlice = createSlice({
+  name: "counter",
+  initialState,
+  reducers: {
+    onProjectAdd: (state, action) => {
+      let newProject = {
+        inputs: action.payload.inputs,
+        name: action.payload.name,
+        datetime: action.payload.datetime,
+        form: action.payload.form,
+      };
+      state.projectComponents = [...state.projectComponents, newProject];
+    },
+    onToggleAddPeoject: (state, action) => {
+      state.addProject = action.payload.flag;
+    },
+  },
+});
 
-
-export const counterSlice = createSlice ({
-    name: 'counter',
-    initialState,
-    reducers: {
-        onProjectAdd: (state, action) => {
-            let newProject = {
-               inputs: action.payload.inputs,
-                name: action.payload.name,
-                datetime: action.payload.datetime,
-                form: action.payload.form,
-            };
-            state.projectComponents = [...state.projectComponents, newProject];
-        },
-        onToggleAddPeoject: (state, action) => {
-            state.addProject = action.payload.flag;
-        },
-    }
-})
-
-export const {onProjectAdd,onToggleAddPeoject} = counterSlice.actions;
+export const { onProjectAdd, onToggleAddPeoject } = counterSlice.actions;
 
 export default counterSlice.reducer;
