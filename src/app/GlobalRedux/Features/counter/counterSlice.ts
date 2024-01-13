@@ -24,10 +24,10 @@
 
 // export default counterSlice.reducer;
 
+"use client";
 
-'use client'
+import { createSlice } from "@reduxjs/toolkit";
 
-import { createSlice } from "@reduxjs/toolkit"
 
 const initialState ={
     AddingwordsInputs: [{
@@ -39,7 +39,6 @@ const initialState ={
    
   
 }
-
 
 export const counterSlice = createSlice ({
     name: 'counter',
